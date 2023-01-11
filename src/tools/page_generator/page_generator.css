@@ -1,0 +1,22 @@
+.centralwindow {
+    width: 30%;
+    min-width: 95vmin;
+    max-height: 75%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.centralwindow > * {
+    flex: 1;
+}
+
+.listtemplate > .list-group-item > .formgroup {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    /* grid-gap: 10px; */
+}
+
+/* .listtemplate > .list-group-item > .formgroup > .form-label {
+    width: 10%;
+} */

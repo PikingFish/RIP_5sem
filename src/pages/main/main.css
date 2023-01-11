@@ -1,0 +1,10 @@
+.carousel-item > img {
+  object-fit: cover;
+  object-position: center;
+  height: 100vh;
+}
+
+#header {
+  position: fixed !important;
+  width: 100%;
+}

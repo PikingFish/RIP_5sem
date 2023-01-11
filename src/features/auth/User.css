@@ -1,0 +1,35 @@
+.userform > .listtemplate {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+  
+/* .userform > .listtemplate > .list-group-item:nth-last-child(2):nth-child(3),
+.userform > .listtemplate > .list-group-item:nth-last-child(1):nth-child(2) 
+{
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.userform > .listtemplate > .list-group-item:nth-last-child(2):nth-child(3) > *,
+.userform > .listtemplate > .list-group-item:nth-last-child(1):nth-child(2) > * 
+{
+  width: 100%;
+}
+
+.userform > .listtemplate > .list-group-item:nth-last-child(2):nth-child(3) .list-group,
+.userform > .listtemplate > .list-group-item:nth-last-child(1):nth-child(2) .list-group 
+{
+  overflow: auto;
+} */
+
+#listgroups {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#listgroups > * {
+  width: 100%;
+}

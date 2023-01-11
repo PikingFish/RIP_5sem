@@ -1,0 +1,4 @@
+.centralwindow > .userform {
+  display: flex;
+  min-height: 0;
+}
