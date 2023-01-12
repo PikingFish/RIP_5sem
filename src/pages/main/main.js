@@ -77,6 +77,18 @@ export function MainBody() {
               <p>Ответ поддержки не гарантирован</p>
             </Carousel.Caption>
           </Carousel.Item>
+          <Carousel.Item>
+            <img 
+              className="d-block w-100"
+              // data-src="holder.js/holder.js/800x400?text=Школьники строители&bg=373940" 
+              src="img/tazi.jpg"
+              alt="Специалисты"
+            />
+            <Carousel.Caption>
+              <h3>При любой покупке катание на тазах в подарок!</h3>
+              <p>при покупке от 1 000 000 000 рублей</p>
+            </Carousel.Caption>
+          </Carousel.Item>
         </Carousel>
         <img src={Arrow} />
       </div>
