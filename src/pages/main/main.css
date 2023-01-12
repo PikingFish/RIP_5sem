@@ -5,7 +5,7 @@
 }
 
 #header {
-  position: fixed !important;
+  /* position: fixed !important; */
   width: 100%;
 }
 
@@ -95,6 +95,7 @@
   height: 100%;
   background: linear-gradient(270deg, #252424, #252424E0 30%, transparent);
   min-width: 15rem;
+  cursor: pointer;
 }
 
 #short-catalog-arrow {

@@ -2,8 +2,9 @@ import { Carousel } from "react-bootstrap";
 import { useHolderjs } from "use-holderjs";
 import "./main.css";
 import Arrow from "./arrow.svg";
-import { ItemExample } from "../../features/catalog/Catalog";
+import { ItemExample } from "../../features/list/Item";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export function MainHeader() {
@@ -12,12 +13,19 @@ export function MainHeader() {
 
 export function MainBody() {
   useHolderjs();
+  const navigate = useNavigate();
 
   const from = new Date("Tue Jan 10 10:08:09 2023 +0300"); //first commit
   
   const [diff, setDiff] = useState(null);
 
   const coef = [1000*60*60*24, 1000*60*60, 1000*60, 1000];
+
+  useEffect(() => {
+    const headerStyle = document.getElementById("header").style
+    headerStyle.position = "fixed";
+    return () => headerStyle.position = "";
+  })
 
   useEffect(() => {
     setInterval(() => {
@@ -101,7 +109,7 @@ export function MainBody() {
             <ItemExample />
             <ItemExample />
           </div>
-          <div id="short-catalog-continue">
+          <div id="short-catalog-continue" onClick={() => navigate("/catalog")}>
             <div id="short-catalog-arrow">
               <img src={Arrow} />
               <p>Больше товаров в каталоге</p>

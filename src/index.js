@@ -2,16 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { Route, Routes, BrowserRouter as Router, useNavigate } from 'react-router-dom';
-import { Container, Navbar } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { store } from './app/store';
 import './index.css';
 import logo from './logo.svg';
+import cart from './cart.svg'
 
 import { AuthHeader, RequireAuth } from "./features/auth/Auth";
 import { UserBody, UserHeader } from './pages/user/User';
 import { AuthPageBody, AuthPageHeader } from './pages/auth/auth';
 import { MainBody, MainHeader } from './pages/main/main';
 import { doWhoami } from "./features/auth/authSlice";
+import { ListBody, ListHeader } from './pages/list/list';
 
 function TemplateHeader({header}) {
   const navigate = useNavigate();
@@ -29,9 +31,21 @@ function TemplateHeader({header}) {
           />{' '}
           Реакт Бутстрэп
         </Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link onClick={() => navigate('/catalog')}>Каталог</Nav.Link>
+        </Nav>
         <div id="pageheader">
           {header}
         </div>
+        <Button className="cart-button">
+          <img 
+            src={cart}
+            width="25"
+            height="25"
+            className="d-inline-block align-top"
+            alt=''
+          />
+        </Button>
         <AuthHeader />
       </Container>
     </Navbar>
@@ -65,6 +79,9 @@ function App() {
         }/>
         <Route path="/" element={
           <Template header={<MainHeader />} body={<MainBody />} />
+        }/>
+        <Route path="/catalog" element={
+          <Template header={<ListHeader />} body={<ListBody />} />
         }/>
       </Routes>
     </Router>

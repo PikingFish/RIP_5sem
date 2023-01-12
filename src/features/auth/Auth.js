@@ -36,11 +36,17 @@ export function AuthHeader() {
   const loading = useSelector(selectAuthLoading);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  function clickAuth() {
+    dispatch(setFrom(location.pathname));
+    navigate("/auth");
+  }
 
   return (
     <Dropdown>
       {me ? 
-        <Dropdown.Toggle>
+        <Dropdown.Toggle variant='secondary'>
           <img
             alt=""
             src={userIcon}
@@ -51,7 +57,7 @@ export function AuthHeader() {
           {me.username}
         </Dropdown.Toggle> 
       : 
-        <Button variant="primary">
+        <Button variant="secondary" onClick={clickAuth}>
           {loading ? "Загрузка..." : "Войти"}
         </Button>}
       {me ? <Dropdown.Menu>

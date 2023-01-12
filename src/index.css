@@ -26,11 +26,22 @@ html {
     z-index: 9999;
 }
 
+#header .cart-button {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 #root {
     display: flex;
     flex-direction: column;
     height: 100vh;
     overflow: auto;
+}
+
+#pageheader {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
 }
 
 #body {
