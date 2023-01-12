@@ -8,3 +8,107 @@
   position: fixed !important;
   width: 100%;
 }
+
+.carousel-inner {
+  text-shadow: 2px 2px 2px black;
+}
+
+#root {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: -17px;
+  overflow-y: scroll;
+}
+
+.carousel-container > img {
+  position: absolute;
+  height: 2rem;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(180deg,#00000002 0%,#252424DA 70%, #252424 100%);
+}
+
+.carousel-container .carousel-indicators {
+  margin-bottom: 2rem;
+} 
+
+#short-catalog-section {
+  background: #252424;
+}
+
+#about {
+  background: #252424;
+  color: white;
+}
+
+#about p {
+  font-size: 15pt;
+}
+
+#short-catalog-section > h3 {
+  color: white;
+}
+
+#short-catalog {
+  display: flex;
+  justify-content: space-around;
+  min-width: fit-content;
+}
+
+#short-catalog-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#short-catalog > .card {
+  flex-shrink: 0;
+  margin: 0 1rem;
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
+  left: 100%;
+}
+
+#short-catalog.visible > .card {
+  animation-play-state: running;
+}
+
+@keyframes slidein {
+  from {
+    left: 100%;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+#short-catalog-continue {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15%;
+  height: 100%;
+  background: linear-gradient(270deg, #252424, #252424E0 30%, transparent);
+  min-width: 15rem;
+}
+
+#short-catalog-arrow {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  width: 8rem;
+}
+
+#short-catalog-arrow > img {
+  transform: rotate(270deg);
+}
+
+#short-catalog-arrow > p {
+  color: white;
+}
