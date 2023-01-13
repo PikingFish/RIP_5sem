@@ -46,11 +46,11 @@ import API from "../../app/api";
 // }
 
 export async function getUser(id) {
-    return (await API.get(`/user/${id}`)).data;
+    return (await API.get(`/client/${id}`)).data;
 }
 
 export function updateUser(user) {
     let toSend = {...user};
     delete toSend.id;
-    API.put(`/user/${user.id}`, toSend);
+    API.put(`/client/${user.id}`, toSend);
 }

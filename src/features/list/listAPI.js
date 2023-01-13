@@ -60,7 +60,7 @@ import API from "../../app/api";
 // }
 
 export async function fetchData(where = {}) {
-  return (await API.get('/task', {
+  return (await API.get('/catalog', {
     params: where
   })).data;
 }
