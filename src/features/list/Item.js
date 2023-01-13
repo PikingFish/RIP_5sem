@@ -7,7 +7,7 @@ export function Item({item, ...props}) {
   
   return (
     <Card {...props} className="catalog-item">
-      <Card.Img variant="top" src={item.photo || "holder.js/100px180"} />
+      <Card.Img variant="top" src={`/img/items/${item.photo}` || "holder.js/100px180"} />
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>
         <Card.Text className="card-body-text">{item.description}</Card.Text>
