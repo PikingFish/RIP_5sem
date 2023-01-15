@@ -8,7 +8,6 @@ import './index.css';
 import logo from './logo.svg';
 import cart from './cart.svg'
 
-
 import { ChatHeader, ChatBody } from './pages/chat/chat' 
 import { AuthHeader, RequireAuth } from "./features/auth/Auth";
 import { UserBody, UserHeader } from './pages/user/User';

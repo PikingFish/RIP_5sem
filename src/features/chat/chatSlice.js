@@ -28,6 +28,7 @@ export const chatSlice = createSlice({
     initialState,
     reducers: {
         newMessage: (state, action) => {
+            action.payload.User.username = "manager"
             state.value.push(action.payload)
             // как задать pageID?
             //action.payload.to === pageId ? state.value.push(action.payload) : 1
