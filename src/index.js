@@ -14,6 +14,7 @@ import { AuthPageBody, AuthPageHeader } from './pages/auth/auth';
 import { MainBody, MainHeader } from './pages/main/main';
 import { doWhoami } from "./features/auth/authSlice";
 import { ListBody, ListHeader } from './pages/list/list';
+import { ChatHeader, ChatBody } from './pages/chat/chat' 
 
 function TemplateHeader({header}) {
   const navigate = useNavigate();
@@ -82,6 +83,11 @@ function App() {
         }/>
         <Route path="/catalog" element={
           <Template header={<ListHeader />} body={<ListBody />} />
+        }/>
+        <Route path="/manager" element={
+          <RequireAuth>
+            <Template header={<ChatHeader />} body={<ChatBody />} />
+          </RequireAuth>
         }/>
       </Routes>
     </Router>
