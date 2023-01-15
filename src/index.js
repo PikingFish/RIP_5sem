@@ -8,13 +8,15 @@ import './index.css';
 import logo from './logo.svg';
 import cart from './cart.svg'
 
+
+import { ChatHeader, ChatBody } from './pages/chat/chat' 
 import { AuthHeader, RequireAuth } from "./features/auth/Auth";
 import { UserBody, UserHeader } from './pages/user/User';
 import { AuthPageBody, AuthPageHeader } from './pages/auth/auth';
 import { MainBody, MainHeader } from './pages/main/main';
 import { doWhoami } from "./features/auth/authSlice";
 import { ListBody, ListHeader } from './pages/list/list';
-import { ChatHeader, ChatBody } from './pages/chat/chat' 
+
 
 function TemplateHeader({header}) {
   const navigate = useNavigate();
