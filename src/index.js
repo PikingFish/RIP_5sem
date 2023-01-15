@@ -36,6 +36,9 @@ function TemplateHeader({header}) {
         <Nav className="me-auto">
           <Nav.Link onClick={() => navigate('/catalog')}>Каталог</Nav.Link>
         </Nav>
+        <Nav className="me-auto">
+          <Nav.Link onClick={() => navigate('/manager')}>Поддержка</Nav.Link>
+        </Nav>
         <div id="pageheader">
           {header}
         </div>
