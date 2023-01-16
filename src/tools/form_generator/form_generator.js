@@ -1,6 +1,7 @@
 import { Form } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import "./form_generator.css";
 
 
 export function Group(config) {
