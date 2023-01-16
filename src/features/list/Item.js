@@ -7,7 +7,7 @@ export function Item({item, ...props}) {
   
   return (
     <Card {...props} className="catalog-item">
-      <Card.Img variant="top" src={`/img/items/${item.photo}` || "holder.js/100px180"} />
+      <Card.Img variant="top" src={item.photo ? `/img/items/${item.photo}` : "holder.js/100px180"} />
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>
         <Card.Text className="card-body-text">{item.description}</Card.Text>
@@ -24,7 +24,7 @@ export function ItemExample(props) {
   useHolderjs();
   return (
     <Item item={{
-      title: "Card title",
+      name: "Card title",
       description: "Some quick example text to build on the card title and make up the bulk of the card's content.",
       price: "∞"
     }} />
