@@ -82,8 +82,8 @@ export function MainBody() {
             />
             <Carousel.Caption>
               <h3>Самые сильные специалисты поддержки могут ответить на ваш вопрос</h3>
-              {/* <p>Ответ поддержки не гарантирован</p> */}
-              <Button variant="link" onClick={() => navigate("/manager")}>Ответ поддержки не гарантирован</Button>
+              <p>Ответ поддержки не гарантирован</p>
+              {/* <Button variant="link" onClick={() => navigate("/manager")}>Ответ поддержки не гарантирован</Button> */}
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
