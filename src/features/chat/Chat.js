@@ -45,7 +45,7 @@ export function Chat() {
         <ListTemplate>
             <ListGroup>
                 {value.map((el) =>  
-                    <ListGroup.Item key={el.id} className={el.deleted ? "msg-deleted" : undefined}><p><b>from {el.User.username} {el.status || el.from === me.id? "😐" : "💀"}: </b></p><div dangerouslySetInnerHTML={{__html: el.text}}></div><Button disabled={loading} onClick={() => onDeleteMessage(el)}>{loading ? "🐴" : "🗑️"}</Button></ListGroup.Item>
+                    <ListGroup.Item key={el.id} className={el.deleted ? "msg-deleted" : undefined}><p><b>from {el.User.username} {el.status || el.from === me.id? "😐" : "💀"}: </b></p><div dangerouslySetInnerHTML={{__html: el.text}}></div></ListGroup.Item>
                 )}
             </ListGroup>
             <CustomForm onSubmitData={(data) => !loading ? onSubmitData(data) : null}>
