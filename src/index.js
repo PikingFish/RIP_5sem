@@ -6,7 +6,6 @@ import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { store } from './app/store';
 import './index.css';
 import logo from './logo.svg';
-import cart from './cart.svg'
 
 import { ChatHeader, ChatBody } from './pages/chat/chat' 
 import { AuthHeader, RequireAuth } from "./features/auth/Auth";
@@ -15,6 +14,8 @@ import { AuthPageBody, AuthPageHeader } from './pages/auth/auth';
 import { MainBody, MainHeader } from './pages/main/main';
 import { doWhoami } from "./features/auth/authSlice";
 import { ListBody, ListHeader } from './pages/list/list';
+import { CartBody, CartHeader } from './pages/cart/cart';
+import { CartWidget } from './features/list/Cart';
 
 
 function TemplateHeader({header}) {
@@ -42,15 +43,7 @@ function TemplateHeader({header}) {
         <div id="pageheader">
           {header}
         </div>
-        <Button className="cart-button">
-          <img 
-            src={cart}
-            width="25"
-            height="25"
-            className="d-inline-block align-top"
-            alt=''
-          />
-        </Button>
+        <CartWidget />
         <AuthHeader />
       </Container>
     </Navbar>
@@ -91,6 +84,11 @@ function App() {
         <Route path="/manager" element={
           <RequireAuth>
             <Template header={<ChatHeader />} body={<ChatBody />} />
+          </RequireAuth>
+        }/>
+        <Route path="/cart" element={
+          <RequireAuth>
+            <Template header={<CartHeader />} body={<CartBody />} />
           </RequireAuth>
         }/>
       </Routes>

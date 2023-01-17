@@ -4,7 +4,6 @@ import "./Item.css";
 
 
 export function Item({item, ...props}) {
-  
   return (
     <Card {...props} className="catalog-item">
       <Card.Img variant="top" src={item.photo ? `/img/items/${item.photo}` : "holder.js/100px180"} />
