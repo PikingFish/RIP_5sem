@@ -10,7 +10,7 @@ import cart from './cart.svg'
 import { useEffect } from "react";
 
 export function CartButtonGroup({id}) {
-  const item = useSelector(selectCartValue).filter(el => el.id == id)[0];
+  const item = useSelector(selectCartValue).filter(el => el.id === id)[0];
 
   return (
     item ?
@@ -48,7 +48,7 @@ export function Cart() {
 
   useEffect(() => {
     dispatch(getCart());
-  }, []);
+  }, [dispatch]);
 
   return (
     <ListTemplate>

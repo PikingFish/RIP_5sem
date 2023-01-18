@@ -1,7 +1,7 @@
 import { Carousel } from "react-bootstrap";
 import "./main.css";
 import Arrow from "./arrow.svg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShortCatalog } from "../../features/list/ShortCatalog";
 
@@ -11,11 +11,13 @@ export function MainHeader() {
 }
 
 function About() {
-  const from = new Date("Tue Jan 10 10:08:09 2023 +0300"); //first commit
   const [diff, setDiff] = useState(null);
-  const coef = [1000*60*60*24, 1000*60*60, 1000*60, 1000];
+  
 
   useEffect(() => {
+    const coef = [1000*60*60*24, 1000*60*60, 1000*60, 1000];
+    const from = new Date("Tue Jan 10 10:08:09 2023 +0300"); //first commit
+
     const intervalId = setInterval(() => {
       const diffValue = new Date() - from;
       const newValue = coef.map(el => Math.floor(diffValue / el));
@@ -97,7 +99,7 @@ export function MainBody() {
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
-        <img src={Arrow} />
+        <img src={Arrow} alt="" />
       </div>
       <div id="short-catalog-section">
         <h3>Мы предлагаем:</h3>
@@ -105,7 +107,7 @@ export function MainBody() {
           <ShortCatalog />
           <div id="short-catalog-continue" onClick={() => navigate("/catalog")}>
             <div id="short-catalog-arrow">
-              <img src={Arrow} />
+              <img src={Arrow} alt="" />
               <p>Больше товаров в каталоге</p>
             </div>
           </div>

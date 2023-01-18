@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { Route, Routes, BrowserRouter as Router, useNavigate } from 'react-router-dom';
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import { store } from './app/store';
 import './index.css';
 import logo from './logo.svg';
