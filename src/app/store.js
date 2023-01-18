@@ -4,6 +4,7 @@ import userReducer from "../features/auth/userSlice";
 import listReducer from "../features/list/listSlice";
 import chatReducer from "../features/chat/chatSlice";
 import cartReducer from "../features/list/cartSlice";
+import shortCatalogReducer from "../features/list/shortCatalogSlice"
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     list: listReducer,
     chat: chatReducer,
     cart: cartReducer,
+    shortCatalog: shortCatalogReducer
   }
 });

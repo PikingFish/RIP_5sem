@@ -51,21 +51,13 @@
   color: white;
 }
 
-#short-catalog {
-  display: flex;
-  justify-content: space-around;
-  min-width: fit-content;
-}
-
 #short-catalog-container {
   width: 100%;
   overflow: hidden;
   position: relative;
 }
 
-#short-catalog > .card {
-  flex-shrink: 0;
-  margin: 0 1rem;
+.short-catalog > .card {
   animation-duration: 3s;
   animation-name: slidein;
   animation-play-state: paused;
@@ -73,7 +65,7 @@
   left: 100%;
 }
 
-#short-catalog.visible > .card {
+.short-catalog.visible > .card {
   animation-play-state: running;
 }
 

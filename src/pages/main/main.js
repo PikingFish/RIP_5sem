@@ -5,16 +5,14 @@ import Arrow from "./arrow.svg";
 import { ItemExample } from "../../features/list/Item";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ShortCatalog } from "../../features/list/ShortCatalog";
 
 
 export function MainHeader() {
   return null;
 }
 
-export function MainBody() {
-  useHolderjs();
-  const navigate = useNavigate();
-
+function About() {
   const from = new Date("Tue Jan 10 10:08:09 2023 +0300"); //first commit
   
   const [diff, setDiff] = useState(null);
@@ -22,18 +20,33 @@ export function MainBody() {
   const coef = [1000*60*60*24, 1000*60*60, 1000*60, 1000];
 
   useEffect(() => {
-    const headerStyle = document.getElementById("header").style
-    headerStyle.position = "fixed";
-    return () => headerStyle.position = "";
-  })
-
-  useEffect(() => {
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       const diffValue = new Date() - from;
       const newValue = coef.map(el => Math.floor(diffValue / el));
       setDiff(`${newValue[0]} дня, ${newValue[1] % 24} часов, ${newValue[2] % 60} минут, ${newValue[3] % 60} секунд`);
     }, 1000);
-  });
+    return(() => {
+      clearInterval(intervalId);
+    })
+  }, []);
+
+  return (
+    <div id="about">
+      <h3>О нас: </h3>
+      <p>Мы на рынке уже {diff}. За это время мы успели выполнить множество заказов. За каждый из них мы можем ручаться. Наши клиенты ценят наше качество, скорость и удобство работы.</p>
+    </div>
+  )
+}
+
+export function MainBody() {
+  useHolderjs();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const headerStyle = document.getElementById("header").style
+    headerStyle.position = "fixed";
+    return () => headerStyle.position = "";
+  }, []);
 
   function onLoadAnimation(e) {
     const Obs = new IntersectionObserver((entries, observer) => {
@@ -104,12 +117,7 @@ export function MainBody() {
       <div id="short-catalog-section">
         <h3>Мы предлагаем:</h3>
         <div id="short-catalog-container">
-          <div id="short-catalog" onLoad={onLoadAnimation}>
-            <ItemExample />
-            <ItemExample />
-            <ItemExample />
-            <ItemExample />
-          </div>
+          <ShortCatalog onLoad={onLoadAnimation} />
           <div id="short-catalog-continue" onClick={() => navigate("/catalog")}>
             <div id="short-catalog-arrow">
               <img src={Arrow} />
@@ -118,10 +126,7 @@ export function MainBody() {
           </div>
         </div>
       </div>
-      <div id="about">
-        <h3>О нас: </h3>
-        <p>Мы на рынке уже {diff}. За это время мы успели выполнить множество заказов. За каждый из них мы можем ручаться. Наши клиенты ценят наше качество, скорость и удобство работы.</p>
-      </div>
+      <About />
     </>
   );
 }
