@@ -2,11 +2,6 @@
   width: 20rem;
 }
 
-.catatlog-item-buttongroup {
-  width: 100%;
-  display: flex;
-}
-
-.catatlog-item-buttongroup > .catalog-item-addtocartbutton {
+.catalog-item .cart-button-group {
   width: 100%;
 }

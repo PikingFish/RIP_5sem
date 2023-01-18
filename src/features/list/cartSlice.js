@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { doGetCart } from './cartAPI';
 
 const initialState = {
-  value: [],
+  value: null,
   loading: false,
   error: null
 };
@@ -28,7 +28,7 @@ export const cartSlice = createSlice({
       })
       .addCase(getCart.fulfilled, (state, action) => {
         state.loading = false;
-        state.value = [...state.value, ...action.payload]
+        state.value = [...(state.value ? state.value : []), ...action.payload]
       })
       .addCase(getCart.rejected, (state, action) => {
         state.loading = false;

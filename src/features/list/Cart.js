@@ -10,7 +10,7 @@ import cart from './cart.svg'
 import { useEffect } from "react";
 
 export function CartButtonGroup({id}) {
-  const item = useSelector(selectCartValue).filter(el => el.id === id)[0];
+  const item = (useSelector(selectCartValue) || []).filter(el => el.id === id)[0];
 
   return (
     item ?
@@ -26,6 +26,14 @@ export function CartButtonGroup({id}) {
 
 export function CartWidget() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const value = useSelector(selectCartValue);
+
+  useEffect(() => {
+    if (!value ) {
+      dispatch(getCart());
+    }
+  }, [dispatch, value]);
   
   return (
     <Button className="cart-button" onClick={() => navigate("/cart")}>
@@ -41,14 +49,8 @@ export function CartWidget() {
 }
 
 export function Cart() {
-  const dispatch = useDispatch();
-
   const loading = useSelector(selectCartLoading);
   const value = useSelector(selectCartValue);
-
-  useEffect(() => {
-    dispatch(getCart());
-  }, [dispatch]);
 
   return (
     <ListTemplate>
@@ -57,7 +59,7 @@ export function Cart() {
           {loading ? 
             <ListGroup.Item key="loading" className="cart-element" disabled>Loading</ListGroup.Item>
           : 
-            value.map(el => 
+            value ? value.map(el => 
               <ListGroup.Item className="cart-item" key={el.id} action>
                 <div className="cart-item-container">
                   <div>{el.name}</div>
@@ -65,7 +67,7 @@ export function Cart() {
                 </div>
                 <CartButtonGroup id={el.id} />
               </ListGroup.Item>
-            )
+            ) : null
           }
         </ListGroup>
       </Group>
