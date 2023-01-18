@@ -1,9 +1,7 @@
-import { Button, Carousel } from "react-bootstrap";
-import { useHolderjs } from "use-holderjs";
+import { Carousel } from "react-bootstrap";
 import "./main.css";
 import Arrow from "./arrow.svg";
-import { ItemExample } from "../../features/list/Item";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShortCatalog } from "../../features/list/ShortCatalog";
 
@@ -14,9 +12,7 @@ export function MainHeader() {
 
 function About() {
   const from = new Date("Tue Jan 10 10:08:09 2023 +0300"); //first commit
-  
   const [diff, setDiff] = useState(null);
-
   const coef = [1000*60*60*24, 1000*60*60, 1000*60, 1000];
 
   useEffect(() => {
@@ -39,7 +35,6 @@ function About() {
 }
 
 export function MainBody() {
-  useHolderjs();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,16 +42,6 @@ export function MainBody() {
     headerStyle.position = "fixed";
     return () => headerStyle.position = "";
   }, []);
-
-  function onLoadAnimation(e) {
-    const Obs = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        entry.target.classList.toggle("visible", entry.isIntersecting);
-      });
-    });
-    Obs.observe(e.currentTarget, {});
-    e.currentTarget.querySelectorAll(".card").forEach((el, n) => { el.style["animationDelay"] = `${n*0.5}s` });
-  }
 
   return (
     <>
@@ -96,7 +81,7 @@ export function MainBody() {
             <Carousel.Caption>
               <h3>Самые сильные специалисты поддержки могут ответить на ваш вопрос</h3>
               <p>Ответ поддержки не гарантирован</p>
-              {/* <Button variant="link" onClick={() => navigate("/manager")}>Ответ поддержки не гарантирован</Button> */}
+              
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -117,7 +102,7 @@ export function MainBody() {
       <div id="short-catalog-section">
         <h3>Мы предлагаем:</h3>
         <div id="short-catalog-container">
-          <ShortCatalog onLoad={onLoadAnimation} />
+          <ShortCatalog />
           <div id="short-catalog-continue" onClick={() => navigate("/catalog")}>
             <div id="short-catalog-arrow">
               <img src={Arrow} />

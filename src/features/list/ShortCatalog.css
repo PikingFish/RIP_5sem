@@ -7,4 +7,23 @@
 .short-catalog > .card {
   flex-shrink: 0;
   margin: 0 1rem;
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
+  left: 100%;
+}
+
+.short-catalog.visible > .card {
+  animation-play-state: running;
+}
+
+@keyframes slidein {
+  from {
+    left: 100%;
+  }
+
+  to {
+    left: 0;
+  }
 }

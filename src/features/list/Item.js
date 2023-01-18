@@ -1,5 +1,5 @@
-import { Button, Card } from "react-bootstrap";
-import { useHolderjs } from "use-holderjs";
+import { Card } from "react-bootstrap";
+import { CartButtonGroup } from "./Cart";
 import "./Item.css";
 
 
@@ -11,21 +11,8 @@ export function Item({item, ...props}) {
         <Card.Title>{item.name}</Card.Title>
         <Card.Text className="card-body-text">{item.description}</Card.Text>
         <Card.Text><b>Цена: </b>{item.price} руб</Card.Text>
-        <div className="catatlog-item-buttongroup">
-          <Button className="catalog-item-addtocartbutton" variant="primary">Добавить в корзину</Button>
-        </div>
+        <CartButtonGroup id={item.id} />
       </Card.Body>
     </Card>
   );
-}
-
-export function ItemExample(props) {
-  useHolderjs();
-  return (
-    <Item item={{
-      name: "Card title",
-      description: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      price: "∞"
-    }} />
-  )
 }
