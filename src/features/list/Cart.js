@@ -1,4 +1,4 @@
-import { Button, ListGroup } from "react-bootstrap";
+import { Badge, Button, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Group } from "../../tools/form_generator/form_generator";
@@ -8,6 +8,7 @@ import "./Cart.css";
 
 import cart from './cart.svg'
 import { useEffect } from "react";
+import { selectMe } from "../auth/authSlice";
 
 export function CartButtonGroup({item}) {
   const itemFromCart = (useSelector(selectCartValue) || []).filter(el => el.id === item.id)[0];
@@ -33,12 +34,19 @@ export function CartWidget() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const value = useSelector(selectCartValue);
+  const me = useSelector(selectMe);
 
   useEffect(() => {
-    if (!value ) {
+    if (!value) {
       dispatch(getCart());
     }
   }, [dispatch, value]);
+
+  useEffect(() => {
+    if (me) {
+      dispatch(getCart());
+    }
+  }, [dispatch, me]);
   
   return (
     <Button className="cart-button" onClick={() => navigate("/cart")}>
@@ -49,6 +57,7 @@ export function CartWidget() {
         className="d-inline-block align-top"
         alt=''
       />
+      {value && value.length ? <Badge bg="secondary">{value.length}</Badge> : null}
     </Button>
   )
 }
@@ -70,7 +79,7 @@ export function Cart() {
                   <div>{el.name}</div>
                   <div>{el.price} руб/шт | {el.count*el.price} руб.</div>
                 </div>
-                <CartButtonGroup id={el.id} />
+                <CartButtonGroup item={el} />
               </ListGroup.Item>
             ) : null
           }

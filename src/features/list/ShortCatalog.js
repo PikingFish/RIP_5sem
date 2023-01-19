@@ -11,8 +11,10 @@ export function ShortCatalog({limit, ...props}) {
   const ObsRef = useRef();
 
   useEffect(() => {
-    dispatch(getShortCatalog());
-  }, [dispatch]);
+    if (!value) {
+      dispatch(getShortCatalog());
+    }
+  }, [dispatch, value]);
 
   useEffect(() => {
     const cleanUpRef = ref.current;
