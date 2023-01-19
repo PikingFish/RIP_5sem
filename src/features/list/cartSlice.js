@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { doGetCart } from './cartAPI';
+import { doAddToCart, doGetCart } from './cartAPI';
 
 const initialState = {
   value: null,
@@ -12,13 +12,18 @@ export const getCart = createAsyncThunk(
   doGetCart
 );
 
+export const addToCart = createAsyncThunk(
+  'cart/addToCart',
+  doAddToCart
+);
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action) => {
-      state.value.push(action.payload);
-    }
+    // addToCart: (state, action) => {
+    //   state.value.push(action.payload);
+    // }
   },
   extraReducers: builder => {
     builder
@@ -34,6 +39,15 @@ export const cartSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
+      .addCase(addToCart.fulfilled, (state, action) => {
+        const item = action.meta.arg;
+        const itemInCart = state.value.filter(el => el.id === item.id)[0];
+        if (itemInCart) {
+          itemInCart.count += 1;
+        } else {
+          state.value.push({...item, count: 1});
+        }
+      })
   }
 });
 
@@ -42,4 +56,4 @@ export const selectCartLoading = state => state.cart.loading;
 export const selectCartError = state => state.cart.error;
 
 export default cartSlice.reducer;
-export const { addToCart } = cartSlice.actions;
+// export const { addToCart } = cartSlice.actions;

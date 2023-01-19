@@ -3,24 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Group } from "../../tools/form_generator/form_generator";
 import { ListTemplate } from "../../tools/page_generator/page_generator";
-import { selectCartLoading, selectCartValue, getCart } from "./cartSlice";
+import { selectCartLoading, selectCartValue, getCart, addToCart } from "./cartSlice";
 import "./Cart.css";
 
 import cart from './cart.svg'
 import { useEffect } from "react";
 
-export function CartButtonGroup({id}) {
-  const item = (useSelector(selectCartValue) || []).filter(el => el.id === id)[0];
+export function CartButtonGroup({item}) {
+  const itemFromCart = (useSelector(selectCartValue) || []).filter(el => el.id === item.id)[0];
+  const dispatch = useDispatch();
+
+  function addToCartHandler() {
+    dispatch(addToCart(item));
+  }
 
   return (
-    item ?
+    itemFromCart ?
       <div className="cart-button-group">
         <Button variant="secondary">-</Button>
-        <div>{item.count}</div>
-        <Button>+</Button>
+        <div>{itemFromCart.count}</div>
+        <Button onClick={addToCartHandler}>+</Button>
       </div>
     :
-      <Button>Добавить в корзину</Button>
+      <Button onClick={addToCartHandler}>Добавить в корзину</Button>
   );
 }
 

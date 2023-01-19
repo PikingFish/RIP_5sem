@@ -11,7 +11,7 @@ export function Item({item, ...props}) {
         <Card.Title>{item.name}</Card.Title>
         <Card.Text className="card-body-text">{item.description}</Card.Text>
         <Card.Text><b>Цена: </b>{item.price} руб</Card.Text>
-        <CartButtonGroup id={item.id} />
+        <CartButtonGroup item={item} />
       </Card.Body>
     </Card>
   );
