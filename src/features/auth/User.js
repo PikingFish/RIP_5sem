@@ -2,7 +2,7 @@ import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { CustomForm, Group } from "../../tools/form_generator/form_generator";
+import { Control, CustomForm, Group } from "../../tools/form_generator/form_generator";
 import { ListTemplate } from "../../tools/page_generator/page_generator";
 import "./User.css";
 import { selectMe } from "./authSlice";
@@ -31,7 +31,7 @@ export function User()  {
       <CustomForm className="userform" onSubmitData={data => !loading ? dispatch(doUpdateUser({id: value.id, ...data})) : null}>
         <ListTemplate>
           <Group label="Username" name="username">
-            <Form.Control disabled={!value.canUpdate} value={value.username ? value.username : "Loading..."} />
+            <Control disabled={!value.canUpdate} value={value.username ? value.username : "Loading..."} />
           </Group>
           {value.canUpdate ? 
             <Group label="Password" name="password">

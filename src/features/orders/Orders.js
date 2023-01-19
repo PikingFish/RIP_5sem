@@ -25,7 +25,7 @@ export function Orders() {
       <Group label="Заказы">
         <Accordion>
           {value && value.length ? value.map(el => 
-            <Accordion.Item>
+            <Accordion.Item eventKey={value.id}>
               <Accordion.Header>Заказ №{el.id}</Accordion.Header>
               <Accordion.Body 
                 onEnter={() => {
@@ -56,4 +56,4 @@ function GoToHeader() {
   );
 }
 
-addToAuthHeader(<GoToHeader />);
+addToAuthHeader(<GoToHeader key="orders" />);
