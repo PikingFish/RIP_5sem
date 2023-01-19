@@ -5,12 +5,14 @@ import { ListGroup, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { createOrder } from "../../features/list/cartSlice";
 import "./OrderConstructor.css";
+import { useNavigate } from "react-router-dom";
 
 export function OrderConstructor({value, loading, canBuy}) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function createOrderHandler() {
-    dispatch(createOrder()).then((e) => console.log(e));
+    dispatch(createOrder()).then(navigate('/'));
   }
 
   return (
@@ -26,7 +28,7 @@ export function OrderConstructor({value, loading, canBuy}) {
                   <div>{el.name}</div>
                   <div>{el.price} руб/шт | {el.count*el.price} руб.</div>
                 </div>
-                <CartButtonGroup item={el} />
+                {canBuy ? <CartButtonGroup item={el} /> : null}
               </ListGroup.Item>
             ) : null
           }

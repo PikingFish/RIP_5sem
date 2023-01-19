@@ -36,7 +36,8 @@ export const ordersSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getInfoOrder.fulfilled, (state, action) => {
-        state.value = state.value.map(el => el.id === action.meta.arg ? {...el, stafs: action.payload, loaded: true} : el);
+        const stafs = action.payload.reduce((a, el) => a.filter(e => e.id === el.id)[0] ? a : [...a, {...el, count: action.payload.filter(e => e.id === el.id).length}], []);
+        state.value = state.value.map(el => el.id === action.meta.arg ? {...el, stafs: stafs, loaded: true} : el);
       })
 });
 

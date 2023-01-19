@@ -25,7 +25,7 @@ export function Orders() {
       <Group label="Заказы">
         <Accordion>
           {value && value.length ? value.map(el => 
-            <Accordion.Item eventKey={value.id}>
+            <Accordion.Item eventKey={el.id}>
               <Accordion.Header>Заказ №{el.id}</Accordion.Header>
               <Accordion.Body 
                 onEnter={() => {
@@ -34,7 +34,7 @@ export function Orders() {
                   }
                 }}
               >
-                <OrderConstructor loading={!el.loaded} value={el} />
+                <OrderConstructor loading={!el.loaded} value={el.stafs} />
               </Accordion.Body>
             </Accordion.Item>
           )
