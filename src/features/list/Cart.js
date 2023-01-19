@@ -21,7 +21,7 @@ export function CartButtonGroup({item}) {
   return (
     itemFromCart ?
       <div className="cart-button-group">
-        <Button variant="secondary">-</Button>
+        {/* <Button variant="secondary">-</Button> */}
         <div>{itemFromCart.count}</div>
         <Button onClick={addToCartHandler}>+</Button>
       </div>
@@ -74,7 +74,7 @@ export function Cart() {
             <ListGroup.Item key="loading" className="cart-element" disabled>Loading</ListGroup.Item>
           : 
             value ? value.map(el => 
-              <ListGroup.Item className="cart-item" key={el.id} action>
+              <ListGroup.Item className="cart-item" key={el.id}>
                 <div className="cart-item-container">
                   <div>{el.name}</div>
                   <div>{el.price} руб/шт | {el.count*el.price} руб.</div>

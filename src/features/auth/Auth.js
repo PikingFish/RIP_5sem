@@ -6,6 +6,12 @@ import { selectMe, selectAuthLoading, doLogout, setFrom, doLogin, selectFrom } f
 import { CustomForm, Group } from '../../tools/form_generator/form_generator';
 import userIcon from "./user.svg"
 
+let addToAuthHeaderList = [];
+
+export function addToAuthHeader(element) {
+  addToAuthHeaderList.push(element);
+}
+
 export function RequireAuth({ children }) {
   const me = useSelector(selectMe);
   const loading = useSelector(selectAuthLoading);
@@ -68,6 +74,7 @@ export function AuthHeader() {
         >
           Мой аккаунт
         </Dropdown.Item>
+        {addToAuthHeaderList}
         <Dropdown.Divider />
         <Dropdown.Item
           onClick={() => {

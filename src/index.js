@@ -16,6 +16,7 @@ import { doWhoami } from "./features/auth/authSlice";
 import { ListBody, ListHeader } from './pages/list/list';
 import { CartBody, CartHeader } from './pages/cart/cart';
 import { CartWidget } from './features/list/Cart';
+import { OrdersHeader, OrdersBody } from './pages/orders/orders';
 
 
 function TemplateHeader({header}) {
@@ -89,6 +90,11 @@ function App() {
         <Route path="/cart" element={
           <RequireAuth>
             <Template header={<CartHeader />} body={<CartBody />} />
+          </RequireAuth>
+        }/>
+        <Route path="/orders" element={
+          <RequireAuth>
+            <Template header={<OrdersHeader />} body={<OrdersBody />} />
           </RequireAuth>
         }/>
       </Routes>
