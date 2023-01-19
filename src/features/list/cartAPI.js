@@ -9,3 +9,11 @@ export async function doGetCart() {
 export async function doAddToCart({id}) {
   await API.post(`/staf/${id}`);
 }
+
+export async function doCreateOrder() {
+  return (await API.post('/createorder')).data;
+}
+
+export async function doRemoveFromCart({id}) {
+  await API.post(`/rmstaf/${id}`);
+}

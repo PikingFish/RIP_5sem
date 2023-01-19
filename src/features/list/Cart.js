@@ -1,14 +1,13 @@
-import { Badge, Button, ListGroup } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Group } from "../../tools/form_generator/form_generator";
-import { ListTemplate } from "../../tools/page_generator/page_generator";
-import { selectCartLoading, selectCartValue, getCart, addToCart } from "./cartSlice";
+import { selectCartLoading, selectCartValue, getCart, addToCart, removeFromCart } from "./cartSlice";
 import "./Cart.css";
 
 import cart from './cart.svg'
 import { useEffect } from "react";
 import { selectMe } from "../auth/authSlice";
+import { OrderConstructor } from "../../tools/orders_and_cart/OrderConstructor";
 
 export function CartButtonGroup({item}) {
   const itemFromCart = (useSelector(selectCartValue) || []).filter(el => el.id === item.id)[0];
@@ -18,10 +17,14 @@ export function CartButtonGroup({item}) {
     dispatch(addToCart(item));
   }
 
+  function removeFromCartHandler() {
+    dispatch(removeFromCart(item));
+  }
+
   return (
     itemFromCart ?
       <div className="cart-button-group">
-        {/* <Button variant="secondary">-</Button> */}
+        <Button variant="secondary" onClick={removeFromCartHandler}>-</Button>
         <div>{itemFromCart.count}</div>
         <Button onClick={addToCartHandler}>+</Button>
       </div>
@@ -35,12 +38,6 @@ export function CartWidget() {
   const dispatch = useDispatch();
   const value = useSelector(selectCartValue);
   const me = useSelector(selectMe);
-
-  useEffect(() => {
-    if (!value) {
-      dispatch(getCart());
-    }
-  }, [dispatch, value]);
 
   useEffect(() => {
     if (me) {
@@ -62,29 +59,13 @@ export function CartWidget() {
   )
 }
 
+
+
 export function Cart() {
   const loading = useSelector(selectCartLoading);
   const value = useSelector(selectCartValue);
 
   return (
-    <ListTemplate>
-      <Group label="Товары в корзине">
-        <ListGroup>
-          {loading ? 
-            <ListGroup.Item key="loading" className="cart-element" disabled>Loading</ListGroup.Item>
-          : 
-            value ? value.map(el => 
-              <ListGroup.Item className="cart-item" key={el.id}>
-                <div className="cart-item-container">
-                  <div>{el.name}</div>
-                  <div>{el.price} руб/шт | {el.count*el.price} руб.</div>
-                </div>
-                <CartButtonGroup item={el} />
-              </ListGroup.Item>
-            ) : null
-          }
-        </ListGroup>
-      </Group>
-    </ListTemplate>
+    <OrderConstructor loading={loading} value={value} canBuy />
   );
 }

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { doAddToCart, doGetCart } from './cartAPI';
+import { doAddToCart, doCreateOrder, doGetCart, doRemoveFromCart } from './cartAPI';
 
 const initialState = {
   value: null,
@@ -15,6 +15,16 @@ export const getCart = createAsyncThunk(
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
   doAddToCart
+);
+
+export const removeFromCart = createAsyncThunk(
+  'cart/removeFromCart',
+  doRemoveFromCart
+);
+
+export const createOrder = createAsyncThunk(
+  'cart/createOrder',
+  doCreateOrder
 );
 
 export const cartSlice = createSlice({
@@ -48,6 +58,23 @@ export const cartSlice = createSlice({
         } else {
           state.value.push({...item, count: 1});
         }
+      })
+      .addCase(removeFromCart.fulfilled, (state, action) => {
+        const itemInCart = state.value.filter(el => el.id === action.meta.arg.id)[0]
+        itemInCart.count -= 1;
+        state.value = state.value.filter(el => el.count);
+      })
+      .addCase(createOrder.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createOrder.fulfilled, (state, action) => {
+        state.loading = false;
+        state.value = null;
+      })
+      .addCase(createOrder.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       })
   }
 });

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { doGetOrders } from "./ordersAPI";
+import { doGetInfoOrder, doGetOrders } from "./ordersAPI";
 
 const initialState = {
   value: null,
@@ -10,6 +10,11 @@ const initialState = {
 export const getOrders = createAsyncThunk(
   'orders/get',
   doGetOrders
+);
+
+export const getInfoOrder = createAsyncThunk(
+  'orders/getInfoOrder',
+  doGetInfoOrder
 );
 
 export const ordersSlice = createSlice({
@@ -29,6 +34,9 @@ export const ordersSlice = createSlice({
       .addCase(getOrders.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(getInfoOrder.fulfilled, (state, action) => {
+        state.value = state.value.map(el => el.id === action.meta.arg ? {...el, stafs: action.payload, loaded: true} : el);
       })
 });
 

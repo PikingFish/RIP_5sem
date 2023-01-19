@@ -1,7 +1,3 @@
-.cart-item {
-  display: flex;
-}
-
 .cart-button-group {
   display: flex;
   width: 7rem;
@@ -14,11 +10,3 @@
   text-align: center;
 }
 
-.cart-item-container {
-  display: flex;
-  justify-content: space-between;
-  flex-grow: 1;
-  align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
