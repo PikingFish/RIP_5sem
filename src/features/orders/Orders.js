@@ -26,7 +26,7 @@ export function Orders() {
         <Accordion>
           {value && value.length ? value.map(el => 
             <Accordion.Item eventKey={el.id}>
-              <Accordion.Header>Заказ №{el.id}</Accordion.Header>
+              <Accordion.Header>Заказ №{el.id}  текущий статус: {el.status}</Accordion.Header>
               <Accordion.Body 
                 onEnter={() => {
                   if (!el.loaded) {
