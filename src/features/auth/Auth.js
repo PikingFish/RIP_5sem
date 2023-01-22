@@ -74,6 +74,9 @@ export function AuthHeader() {
         >
           Мой аккаунт
         </Dropdown.Item>
+        {me.admin ? <Dropdown.Item href="/admin">
+          Перейти в админку
+        </Dropdown.Item> : null}
         {addToAuthHeaderList}
         <Dropdown.Divider />
         <Dropdown.Item
