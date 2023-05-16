@@ -15,7 +15,11 @@ import API from "../../app/api";
 // }
 
 export async function login(data) {
-  return (await API.post("/login", data)).data;
+  const payload = {username: data.username, password: data.password}
+  if (data.register) {
+    await API.post("/registration", payload)
+  }
+  return (await API.post("/login", payload)).data;
 }
 
 // const me = {

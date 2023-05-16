@@ -22,7 +22,6 @@
     "react-scripts": "5.0.1",
     "sass": "^1.57.0",
     "universal-cookie": "^4.0.4",
-    "use-holderjs": "0.0.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

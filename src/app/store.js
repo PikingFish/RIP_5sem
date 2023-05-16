@@ -6,6 +6,8 @@ import chatReducer from "../features/chat/chatSlice";
 import cartReducer from "../features/list/cartSlice";
 import shortCatalogReducer from "../features/list/shortCatalogSlice";
 import ordersReducer from "../features/orders/ordersSlice";
+import websocketReducer from "../features/websocket/websocketSlice";
+import notificationReducer from "../features/notification/notificationSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +17,8 @@ export const store = configureStore({
     chat: chatReducer,
     cart: cartReducer,
     shortCatalog: shortCatalogReducer,
-    orders: ordersReducer
+    orders: ordersReducer,
+    websocket: websocketReducer,
+    notification: notificationReducer
   }
 });

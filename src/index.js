@@ -17,6 +17,8 @@ import { ListBody, ListHeader } from './pages/list/list';
 import { CartBody, CartHeader } from './pages/cart/cart';
 import { CartWidget } from './features/list/Cart';
 import { OrdersHeader, OrdersBody } from './pages/orders/orders';
+import { NotificationModule } from "./features/notification/Notification";
+import { Websocket } from "./features/websocket/Websocket";
 
 
 function TemplateHeader({header}) {
@@ -65,7 +67,7 @@ function Template({header, body}) {
 }
 
 function App() {
-  return (
+  return (<>
     <Router>
       <Routes>
         <Route path="/auth" element={
@@ -99,7 +101,9 @@ function App() {
         }/>
       </Routes>
     </Router>
-  );
+    <NotificationModule />
+    <Websocket />
+  </>);
 }
 
 store.dispatch(doWhoami());

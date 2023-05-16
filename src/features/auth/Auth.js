@@ -5,6 +5,7 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { selectMe, selectAuthLoading, doLogout, setFrom, doLogin, selectFrom } from "./authSlice";
 import { CustomForm, Group } from '../../tools/form_generator/form_generator';
 import userIcon from "./user.svg"
+import "./auth.css"
 
 let addToAuthHeaderList = [];
 
@@ -93,7 +94,16 @@ export function AuthHeader() {
   );
 }
 
-export function Auth() {
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function Run(e) {
+  e.target.style.top = Math.min(Math.max(e.target.offsetTop + getRandomInt(100, 200)*(getRandomInt(0,1)*2 - 1), 0), window.innerHeight-100) + "px"
+  e.target.style.left = Math.min(Math.max(e.target.offsetLeft + getRandomInt(100, 200)*(getRandomInt(0,1)*2 - 1), 0), window.innerWidth-100) + "px"
+}
+
+export function Auth() { 
   const loading = useSelector(selectAuthLoading);
   const me = useSelector(selectMe);
   const from = useSelector(selectFrom);
@@ -102,14 +112,17 @@ export function Auth() {
   return (
     <>
       {me ? <Navigate to={from} /> : null}
-      <CustomForm onSubmitData={(data) => !loading ? dispatch(doLogin(data)) : null}>
+      <CustomForm onSubmitData={(data, e) => !loading ? dispatch(doLogin({...data, register: e.nativeEvent.submitter.id == "button_register"})) : null}>
         <Group label="Логин" name="username">
           <Form.Control />
         </Group>
         <Group label="Пароль" name="password">
           <Form.Control />
         </Group>
-        <Button type="submit">{loading ? "Загрузка..." : "Войти"}</Button>
+        <div className="loginbuttonGroup">
+          <Button type="submit" id="button_login">{loading ? "Загрузка..." : "Войти"}</Button>
+          <Button type="submit" id="button_register" variant="danger" onMouseOver={Run}>{loading ? "Загрузка..." : "Регистрация"}</Button>
+        </div>
       </CustomForm>
     </>
   );

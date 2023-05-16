@@ -1,0 +1,10 @@
+.loginbuttonGroup {
+  margin-top: 1rem;
+}
+
+#button_register {
+  margin-left: 0.5rem;
+  position: absolute;
+  z-index: 9999999;
+  transition: all 0.07s linear 0s;
+}
